@@ -26,9 +26,11 @@ public class Player {
 	}
 	
 	
-	//Ask Nida if she thinks we should have it add based on an "after each game" basis
-	//(i.e. gamesPlayed += 1 instead of just gamesPlayed = 2 for the second game)
-	//Then we could have a reset method if they needed to go back to zero and add a final number.
+	/*
+	Should we have it add based on an "after each game" basis
+	(i.e. gamesPlayed += 1 instead of just gamesPlayed = 2 for the second game)
+	Then we could have a reset method if they needed to go back to zero and add a final number.
+	*/
 	public void setGamesPlayed(int num) {
 		if(num >= 0)
 			gamesPlayed = num;
