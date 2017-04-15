@@ -1,5 +1,3 @@
-package project_part_5;
-
 public class Team {
 	private String teamName;
 	private int playerCount;

@@ -1,5 +1,3 @@
-package project_part_5;
-
 public class Player {
 	private String playerName;
 	private int gamesPlayed;
@@ -7,6 +5,8 @@ public class Player {
 	private int pointsScored;
 	private int rebounds;
 	private int steals;
+
+	private String password;
 	
 	public Player() {}
 	public Player(String name){
@@ -20,6 +20,19 @@ public class Player {
 	public int getRebounds() {return rebounds;}
 	public int getSteals() {return steals;}
 	
+	public void setPassword(String password)
+	{
+		if(password.length() > 0)
+		{
+			this.password = password;
+		}
+	}
+
+	public String getPassword()
+	{
+		return this.password;
+	}
+
 	public void setPName(String name) {
 		if(name.length() > 0)
 			playerName = name;

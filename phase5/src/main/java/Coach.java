@@ -1,5 +1,3 @@
-package project_part_5;
-
 public class Coach {
 	private String coachName;
 	private String coachEmail;
@@ -11,7 +9,27 @@ public class Coach {
 	public Coach(String name){
 		coachName = name;
 	}
-	
+	public Coach (String coachEmail, String password)
+	{
+		boolean verify = false;
+		verify = this.setCoachEmail(coachEmail);
+		if (verify == false)
+		{
+			this.setCoachEmail(null);
+		}
+		else
+		{
+			this.setCoachEmail(coachEmail);
+		}
+
+		verify = this.setPassword(password);
+		if (verify == false){
+			this.setPassword(null);
+		} else {
+			this.setPassword(password);
+		}
+	}
+
 	//Accessors
 	public String getCoachName() {return coachName;}
 	public String getCoachEmail() {return coachEmail;}
@@ -23,9 +41,14 @@ public class Coach {
 			coachName = name;
 	}
 	
-	public void setCoachEmail(String email) {
-		if(email.length() > 0)
+	public boolean setCoachEmail(String email) {
+		if(email.length() > 0) {
 			coachEmail = email;
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public void setCoachPhone(String phone) {
@@ -34,9 +57,18 @@ public class Coach {
 	}
 	
 	//Special Methods
-	public void setPassword(String pass) {
-		if(pass.length() > 6)
+	public boolean setPassword(String pass) {
+		if(pass.length() > 6) {
 			password = pass;
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
+
+	public String getPassword(){
+		return this.password;
 	}
 	
 	public String toString() {
