@@ -227,9 +227,9 @@ public class FCYBA {
     	try{
     		do{
     		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Welcome " + coach.getCoachName() + ", \n\n"
-    																	+ "Please select an option: \n"
-    																	+ "1. View your profile. \n"
-    																	+ "2. Edit your profile."));
+    													+ "Please select an option: \n"
+    								    				+ "1. View your profile. \n"
+    													+ "2. Edit your profile."));
     		if(menuChoice != 1 && menuChoice != 2)
     			JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
     		}while(menuChoice != 1 && menuChoice != 2);
@@ -248,9 +248,9 @@ public class FCYBA {
     		try{
         		do{
         		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Please select the information you would like to update: \n"
-        																	+ "1. Name \n"
-        																	+ "2. Phone\n"
-        																	+ "3. Email"));
+        													+ "1. Name \n"
+        													+ "2. Phone\n"
+        													+ "3. Email"));
         		if(menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
         			JOptionPane.showMessageDialog(null, "Please enter a number 1 through 3.");
         		}while(menuChoice != 1 && menuChoice != 2 && menuChoice != 3);
