@@ -356,6 +356,71 @@ public class FCYBA {
 
     public static void playerProfile()
     {
-
+        int menuChoice = -1;
+    	String input = "";
+    	int num = -1;
+    	
+    	try{
+    		do{
+    		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Welcome " + player.getPName() + ", \n\n"
+    																	+ "Please select an option: \n"
+    																	+ "1. View your profile. \n"
+    																	+ "2. Edit your profile."));
+    		if(menuChoice != 1 && menuChoice != 2)
+    			JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
+    		}while(menuChoice != 1 && menuChoice != 2);
+    		
+    	}
+    	catch(NumberFormatException e){
+    		JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
+    	}
+    	
+    	if(menuChoice == 1){
+    		JOptionPane.showMessageDialog(null, player.toString());
+    	}
+    	else if(menuChoice == 2){
+    		menuChoice = -1;
+    		
+    		try{
+        		do{
+        		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Please select the information you would like to update: \n"
+        																	+ "1. Name \n"
+        																	+ "2. Number of games played\n"
+        																	+ "3. Points earned \n"
+        																	+ "4. Assists\n"
+        																	+ "5. Rebounds\n"
+        																	+ "6. Steals"));
+        		if(menuChoice >= 1 && menuChoice <= 6)
+        			JOptionPane.showMessageDialog(null, "Please enter a number 1 through 6.");
+        		}while(menuChoice >= 1 && menuChoice <= 6);
+        		
+        	}
+        	catch(NumberFormatException e){
+        		JOptionPane.showMessageDialog(null, "Please enter a number 1 through 6.");
+        	}
+    		
+    		if(menuChoice == 1){
+    			do{
+    				input = JOptionPane.showInputDialog("Please enter the new name you would like to use:");
+    				
+    				if(input.length() <= 0)
+    					JOptionPane.showMessageDialog(null, "Please enter a name at least one character long.");
+    			}while(input.length() <= 0);
+    			
+    			player.setPName(input);
+    			JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + player.toString());
+    		}
+    		else if(menuChoice == 2){
+    			do{
+    				num = Integer.parseInt(JOptionPane.showInputDialog("Please enter new number of games played:"));
+    				
+    				if(num < 0 || num < player.getGamesPlayed())
+    					JOptionPane.showMessageDialog(null, "Please enter a number greater than the last number of games played.");
+    			}while(num < 0 || num < player.getGamesPlayed());
+    			
+    			player.setGamesPlayed(num);
+    			JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + player.toString());
+    		}
+    	}
     }
 }
