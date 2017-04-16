@@ -219,7 +219,92 @@ public class FCYBA {
 
     public static void profile()
     {
-
+        int menuChoice = -1;
+    	String input = "";
+    	boolean hasAt = false;
+    	boolean hasDot = false;
+    	
+    	try{
+    		do{
+    		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Welcome " + coach.getCoachName() + ", \n\n"
+    																	+ "Please select an option: \n"
+    																	+ "1. View your profile. \n"
+    																	+ "2. Edit your profile."));
+    		if(menuChoice != 1 && menuChoice != 2)
+    			JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
+    		}while(menuChoice != 1 && menuChoice != 2);
+    		
+    	}
+    	catch(NumberFormatException e){
+    		JOptionPane.showMessageDialog(null, "Please enter either a '1' or a '2'");
+    	}
+    	
+    	if(menuChoice == 1){
+    		JOptionPane.showMessageDialog(null, coach.toString());
+    	}
+    	else if(menuChoice == 2){
+    		menuChoice = -1;
+    		
+    		try{
+        		do{
+        		menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Please select the information you would like to update: \n"
+        																	+ "1. Name \n"
+        																	+ "2. Phone\n"
+        																	+ "3. Email"));
+        		if(menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+        			JOptionPane.showMessageDialog(null, "Please enter a number 1 through 3.");
+        		}while(menuChoice != 1 && menuChoice != 2 && menuChoice != 3);
+        		
+        	}
+        	catch(NumberFormatException e){
+        		JOptionPane.showMessageDialog(null, "Please enter a number 1 through 3.");
+        	}
+    		
+    		if(menuChoice == 1){
+    			do{
+    				input = JOptionPane.showInputDialog("Please enter the new name you would like to use:");
+    				
+    				if(input.length() <= 0)
+    					JOptionPane.showMessageDialog(null, "Please enter a name at least one character long.");
+    			}while(input.length() <= 0);
+    			
+    			coach.setCoachName(input);
+    			JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + coach.toString());
+    		}
+    		else if(menuChoice == 2){
+    			do{
+    				input = JOptionPane.showInputDialog("Please enter the new phone you would like to use (just numbers please):");
+    				
+    				if(input.length() != 10)
+    					JOptionPane.showMessageDialog(null, "Please enter a phone of 10 digits, just numeric digits.");
+    			}while(input.length() != 10);
+    			
+    			coach.setCoachPhone(input);
+    			JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + coach.toString());
+    		}
+    		else if(menuChoice == 3){
+    			do{
+    				input = JOptionPane.showInputDialog("Please enter the new email you would like to use:");
+    				
+    				for(int i = 0; i < input.length(); i++){
+    					if(i > 1 && input.charAt(i) == '@')
+    						hasAt = true;
+    					
+    					if(i > 3 && input.charAt(i) == '.')
+    						hasDot = true;
+    					
+    					if(i == (input.length() - 1) && input.charAt(i) == '.')
+    						hasDot = false;
+    				}
+    				
+    				if(!hasAt || !hasDot)
+    					JOptionPane.showMessageDialog(null, "Please enter a valid email: '___@___.___'");
+    			}while(!hasAt || !hasDot);
+    			
+    			coach.setCoachEmail(input);
+    			JOptionPane.showMessageDialog(null, "Here is your new information: \n\n" + coach.toString());
+    		}
+    	}
     }
 
     public static void teamInfo()
