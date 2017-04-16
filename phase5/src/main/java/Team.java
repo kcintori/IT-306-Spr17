@@ -2,7 +2,7 @@ public class Team {
 	private String teamName;
 	private int playerCount;
 	private String teamColor;
-	private Coach teamCoach;
+	private String teamCoach;
 	private Player[] players;
 	private int arrayCount = 0;
 	
@@ -13,13 +13,13 @@ public class Team {
 	public Team(String name, String coach) {
 		this();
 		teamName = name;
-		teamCoach = new Coach(coach);
+		teamCoach = coach;
 	}
 	
 	public String getTName() {return teamName;}
 	public int getPlayerCount() {return playerCount;}
 	public String getTColor() {return teamColor;}
-	public Coach getTCoach() {return teamCoach;}
+	public String getTCoach() {return teamCoach;}
 	public Player[] getPlayers() {return players;}
 	
 	public void setTName(String name) {
@@ -40,7 +40,7 @@ public class Team {
 			teamColor = color;
 	}
 	
-	public void setTCoach(Coach newCoach) {
+	public void setTCoach(String newCoach) {
 		teamCoach = newCoach;
 	}
 	
@@ -51,7 +51,7 @@ public class Team {
 	public String toString() {
 		String output = "";
 		output = "Team name: " + teamName + "\n";
-		output = "Coach: " + teamCoach.getCoachName() + "\n";
+		output = "Coach: " + this.teamCoach + "\n";
 		output = "Team size: " + playerCount + "\n";
 		output = "No. players currently on roster: " + arrayCount + "\n";
 		output = "Team color: " + teamColor;

@@ -21,18 +21,18 @@ public class FCYBA {
 
         createExistingUserData(coach, team, players, MAX_PLAYERS);
 
-        loginPage();
     }
 
     public static void createExistingUserData(Coach coach, Team team, Player[] players, int MAX_PLAYERS)
     {
         coach = new Coach("coach@coaches.com", "password");
-        coach.setCoachName("John Smith");
+        coach.setCoachName("John Smithson");
         coach.setCoachPhone("703-111-1111");
 
         int count = 0;
+        int counter = 0;
 
-       for(int counter = 0; counter > MAX_PLAYERS; counter ++) {
+       for(counter = 0; counter > MAX_PLAYERS; counter ++) {
            players[counter] = new Player();
            count++;
            players[counter].setPName("John Smith" + count);
@@ -45,11 +45,19 @@ public class FCYBA {
        }
 
         team = new Team();
+        for(int x = 0; x > players.length; x++)
+        {
+            team.addPlayer(players[x]);
+        }
+        team.setPlayerCount(players.length);
+        team.setTCoach(coach.getCoachName());
+        team.setTColor("blue");
+        team.setTName("FCYBA");
 
-        loginPage(coach, players);
+        loginPage(coach, players, counter);
     }
 
-    public static void loginPage(Coach coach, Player[] players)
+    public static void loginPage(Coach coach, Player[] players, int counter)
     {
         int reply = JOptionPane.showConfirmDialog(null, "Are you the coach?");
 
@@ -85,7 +93,7 @@ public class FCYBA {
                     }
                     if(coach.getCoachEmail().equals(username) && coach.getPassword().equals(password))
                     {
-                        coachMenu();
+                        coachMenu(coach);
                     }
                     else
                     {
@@ -131,7 +139,7 @@ public class FCYBA {
                     }
                     if(coach.getCoachEmail().equals(username) && coach.getPassword().equals(password))
                     {
-                        playersMenu();
+                        playersMenu(players, counter);
                     }
                     else
                     {
@@ -188,7 +196,7 @@ public class FCYBA {
         }
         else if(userChoice == 3)
         {
-           players();
+           playerProfile();
         }
         else if(userChoice == 4)
         {
@@ -219,22 +227,8 @@ public class FCYBA {
 
     }
 
-    public static void players()
-    {
-
-    }
 
     public static void reports()
-    {
-
-    }
-
-    public static void personalFile()
-    {
-
-    }
-
-    public static void messages()
     {
 
     }
@@ -251,9 +245,8 @@ public class FCYBA {
                         "! \n Team Management Software \n" +
                         "Please select from the options below: \n" +
                         "1. View and edit profile \n" +
-                        "2. Send and receive messages. \n" +
-                        "3. Exit. "));
-                if (userChoice > 3 || userChoice < 1) {
+                        "2. Exit. "));
+                if (userChoice > 2 || userChoice < 1) {
                     bool = false;
                     JOptionPane.showMessageDialog(null, "Please choose from the choices given.");
                 } else {
@@ -266,13 +259,8 @@ public class FCYBA {
             JOptionPane.showMessageDialog(null, "Error occurred.");
         }
 
-        if(userChoice == 1)
-        {
+        if(userChoice == 1) {
             playerProfile();
-        }
-        else if(userChoice == 2)
-        {
-            pmessages();
         }
         else
         {
@@ -284,10 +272,5 @@ public class FCYBA {
     public static void playerProfile()
     {
 
-    }
-
-    public static void pmessages()
-    {
-        
     }
 }
