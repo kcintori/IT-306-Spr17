@@ -1,4 +1,4 @@
-import com.sun.codemodel.internal.JOp;
+//import com.sun.codemodel.internal.JOp;
 
 import javax.swing.*;
 import java.util.IllegalFormatException;
@@ -188,7 +188,7 @@ public class FCYBA {
 
         if(userChoice == 1)
         {
-            profile();
+            profile(coach);
         }
         else if(userChoice == 2)
         {
@@ -196,7 +196,8 @@ public class FCYBA {
         }
         else if(userChoice == 3)
         {
-           playerProfile();
+        	//TODO we need to get which player the coach wants to edit here.
+        	playerProfile(player);
         }
         else if(userChoice == 4)
         {
@@ -204,7 +205,7 @@ public class FCYBA {
         }
         else if(userChoice == 5)
         {
-            personalFile()
+            personalFile();
         }
         else if(userChoice == 6)
         {
@@ -217,7 +218,7 @@ public class FCYBA {
         }
     }
 
-    public static void profile()
+    public static void profile(Coach coach)
     {
         int menuChoice = -1;
     	String input = "";
@@ -313,9 +314,59 @@ public class FCYBA {
     }
 
 
-    public static void reports()
+    public static void reports(Team team)
     {
-
+    	int menuChoice = -1;
+    	String output = "";
+    	Player[] playerList = team.getPlayers();
+    	boolean bool = false;
+    	Player temp;
+    	
+    	menuChoice = Integer.parseInt(JOptionPane.showInputDialog("Please select the report you want to view:\n\n"
+    			+ "1. Alphabetically\n"
+    			+ "2. Points scored\n"
+    			+ "3. Games played\n"));
+    	
+    	if(menuChoice == 1){
+    		for(int i = 0; i < playerList.length; i++){
+    			for(int j = i; j < (playerList.length-1); j++){
+    				if(playerList[j].getPName().toLowerCase().charAt(0) > playerList[j+1].getPName().toLowerCase().charAt(0)){
+    					temp = playerList[j];
+    					playerList[j] = playerList[j+1];
+    					playerList[j+1] = temp;
+    				}
+    				else if(playerList[j].getPName().toLowerCase().charAt(0) == playerList[j+1].getPName().toLowerCase().charAt(0)){
+    					for(int k = 1; k < playerList[j].getPName().length() && k < playerList[j+1].getPName().length(); k++){
+    						if(playerList[j].getPName().toLowerCase().charAt(k) > playerList[j+1].getPName().toLowerCase().charAt(k)){
+    	    					temp = playerList[j];
+    	    					playerList[j] = playerList[j+1];
+    	    					playerList[j+1] = temp;
+    	    					bool = true;
+    	    				}
+    						if(bool)
+    							break;
+    					}
+    				}
+    			}
+    		}
+    		
+    		output += "Sorted on player name:\n\n";
+			output += "Player name | Games played | Points scored | Assists | Rebounds | Steals\n";
+			
+    		for(int i = 0; i < playerList.length; i++){
+    			output += (i+1) + ". " + playerList[i].getPName() + " | " + playerList[i].getGamesPlayed() + " | " 
+    					+ playerList[i].getPoints() + " | "  + playerList[i].getAssists() + " | "
+    					+ playerList[i].getRebounds() + " | " + playerList[i].getSteals() + "\n";
+    		}
+    	}
+    	else if(menuChoice == 2){
+    		//sort
+    	}
+    	else if(menuChoice == 3){
+    		//sort
+    	}
+    	
+    	JOptionPane.showMessageDialog(null, output);
     }
 
     public static void playersMenu(Player[] players, int counter)
@@ -345,7 +396,7 @@ public class FCYBA {
         }
 
         if(userChoice == 1) {
-            playerProfile();
+            playerProfile(players[counter]);
         }
         else
         {
@@ -354,7 +405,7 @@ public class FCYBA {
         }
     }
 
-    public static void playerProfile()
+    public static void playerProfile(Player player)
     {
         int menuChoice = -1;
     	String input = "";
